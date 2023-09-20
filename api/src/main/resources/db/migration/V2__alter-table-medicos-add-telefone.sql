@@ -4,7 +4,7 @@
  */
 /**
  * Author:  llpad
- * Created: 17 de set. de 2023
+ * Created: 18 de set. de 2023
  */
 
 alter table medicos add telefone varchar(20) not null;
