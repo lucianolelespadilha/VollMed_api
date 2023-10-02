@@ -9,6 +9,7 @@ package med.voll.api.paciente;
  * @author llpad
  */
 public record DadosListagemPaciente(
+        Long id,
         String nome,
         String emal,
         String cpf,
@@ -16,6 +17,7 @@ public record DadosListagemPaciente(
 
     public DadosListagemPaciente(Paciente paciente) {
         this(
+                paciente.getId(),
                 paciente.getNome(),
                 paciente.getEmail(),
                 paciente.getCpf(),

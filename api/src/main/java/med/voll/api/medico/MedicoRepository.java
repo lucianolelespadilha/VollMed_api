@@ -4,15 +4,17 @@
  */
 package med.voll.api.medico;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author llpad
- */              
+ */
 // São passados dois tipos de objetos primeiro o tipo entidade e segundo tipo do atributo da chave primaria da entidade
+public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
-public interface MedicoRepository extends JpaRepository<Medico, Long>{
-    
-    
+    Page<Medico>findAllByAtivoTrue(Pageable paginacao);
+
 }

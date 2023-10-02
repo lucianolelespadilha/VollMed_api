@@ -18,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +48,7 @@ public class MedicoController {
     @GetMapping
     public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){// o metodo nao pode ser void porque ele tem que retornar a List dos medicos.
         
-        return repository.findAll(paginacao).map(DadosListagemMedico::new);// Metodo findAll retorna uma lista
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);// Metodo findAll retorna uma lista
         
     }
     
@@ -61,9 +62,15 @@ public class MedicoController {
         
     }
     
-    @DeleteMapping
-    public void excluir(@RequestBody @Valid ){
+    @Transactional
+    @DeleteMapping("/{id}")// As chaves idicam que o parametro e dinamico
+    public void excluir(@PathVariable Long id){//@PathVariable indica para o Spring que o parametro id e o mesmo parametro dinamido que sera passado na URL
         
+        var medico = repository.getReferenceById(id);
+        
+         medico.excluir();
+        
+    }
     
     
 }
