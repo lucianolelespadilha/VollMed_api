@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author llpad
  */
-@Table(name = "usuarios")
+  @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
 @NoArgsConstructor
@@ -38,9 +38,9 @@ public class Usuario implements UserDetails {
     private String login;
     private String senha;
 
-    @Override
+    @Override//fazer controle de perfil de usuario
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -50,32 +50,32 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-       
+
         return login;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        
-       return true;
+
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
         return true;
-       
+
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        
-       return true;
+
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
         return true;
-        
+
     }
 
 }

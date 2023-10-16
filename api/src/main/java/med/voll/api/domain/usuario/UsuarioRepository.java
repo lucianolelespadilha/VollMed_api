@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public interface UsuarioRepository extends JpaRepository<Usuario , Long> {
 
-    public UserDetails findByLogin(String login);
+     UserDetails findByLogin(String login);
     
     
     

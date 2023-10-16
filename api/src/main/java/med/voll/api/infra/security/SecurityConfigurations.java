@@ -28,7 +28,7 @@ public class SecurityConfigurations {
     @Bean
     //Objeto utilizado pelo Spring para configurar processos de autenticação
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
+        return http.csrf(csrf -> csrf.disable())//desabilitar a proteção aos ataques do tipo csrf pois o token ja faz isso
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
 
     }

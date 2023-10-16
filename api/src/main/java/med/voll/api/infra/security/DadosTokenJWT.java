@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Record.java to edit this template
  */
-package med.voll.api.domain.usuario;
+package med.voll.api.infra.security;
 
 /**
  *
  * @author llpad
  */
-public record DadosAutenticacao(String login, String senha) {
-    
+public record DadosTokenJWT(String tokenJWT) {
+
 }

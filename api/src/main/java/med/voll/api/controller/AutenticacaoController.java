@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import med.voll.api.domain.usuario.DadosAutenticacao;
+import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.infra.security.DadosTokenJWT;
+import med.voll.api.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,16 +26,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class AutenticacaoController {
 
-    @Autowired
+    @Autowired // A classe AuthenticationManager e do proprio Spring e deve ser chamada para fazer a validação dos dados
     private AuthenticationManager manager;
+    
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+                                //o metodo UsernamePasswordAuthenticationToken e um DTO do proprio Spring
+        var authenticationtoken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        var authentication = manager.authenticate(authenticationtoken);
 
-        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var authenticaon = manager.authenticate(token);
-
-        return ResponseEntity.ok().build();
+        var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+        
+        return ResponseEntity.ok (new DadosTokenJWT(tokenJWT));
     }
 
 }

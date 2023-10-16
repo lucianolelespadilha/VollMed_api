@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Record.java to edit this template
  */
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import med.voll.api.endereco.Endereco;
 import org.yaml.snakeyaml.external.com.google.gdata.util.common.base.Escaper;
