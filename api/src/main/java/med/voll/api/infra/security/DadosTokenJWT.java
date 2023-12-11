@@ -8,6 +8,6 @@ package med.voll.api.infra.security;
  *
  * @author llpad
  */
-public record DadosTokenJWT(String tokenJWT) {
+public record DadosTokenJWT(String token) {
 
 }

@@ -24,18 +24,18 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author llpad
  */
-  @Table(name = "usuarios")
+@Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id")// A interfacer UserDetails mostra para o Spring que  o campo id e o atributo id o campo senha eo atributo senha       
 public class Usuario implements UserDetails {
 
-    @Id
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String login;
+    private Long id;
+    private String login;   
     private String senha;
 
     @Override//fazer controle de perfil de usuario

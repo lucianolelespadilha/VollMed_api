@@ -15,13 +15,12 @@ import org.springframework.stereotype.Service;
  * @author llpad
  */
 
-@Service
 
-//para que o Spring Security posso entontrar essa class demevos implementar a interfaca UserDetailsService
+@Service      //para que o Spring Security posso entontrar essa class demevos implementar a interfaca UserDetailsService
 public class AutenticacaoService implements UserDetailsService{
     
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioRepository repository; // Ejetar o repository
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

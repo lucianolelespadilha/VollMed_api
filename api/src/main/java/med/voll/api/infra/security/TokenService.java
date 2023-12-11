@@ -5,8 +5,11 @@
 package med.voll.api.infra.security;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,12 +33,12 @@ public class TokenService {
 
         try {
             var algoritmo = Algorithm.HMAC256("secret");
-            return JWT.create().
+            return JWT.create()
                     //API que vai gerar o Token
-                    withIssuer("API Voll.med").
-                    withSubject(usuario.getLogin()).
-                    withExpiresAt(dataExpiracao()).
-                    sign(algoritmo);
+                    .withIssuer("API Voll.med")
+                    .withSubject(usuario.getLogin())
+                    .withExpiresAt(dataExpiracao())
+                    .sign(algoritmo);
 
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar o Token JWT", exception);
@@ -43,8 +46,23 @@ public class TokenService {
 
     }
 
+    public String getSubject(String tokenJWT) {
+        try {
+            var algoritmo = Algorithm.HMAC256("secret");
+            return JWT.require(algoritmo)
+                    .withIssuer("API Voll.med")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+        } catch (JWTVerificationException exception) {
+            exception.printStackTrace();
+            throw new RuntimeException("Token JWT inválido ou expirado! " + tokenJWT);
+        }
+    }
+
     private Instant dataExpiracao() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
 
     }
+
 }

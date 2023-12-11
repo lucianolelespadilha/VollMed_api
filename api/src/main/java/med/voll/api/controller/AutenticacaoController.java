@@ -34,13 +34,16 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+        
                                 //o metodo UsernamePasswordAuthenticationToken e um DTO do proprio Spring
-        var authenticationtoken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var authentication = manager.authenticate(authenticationtoken);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        var authentication = manager.authenticate(authenticationToken);
 
         var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
         
         return ResponseEntity.ok (new DadosTokenJWT(tokenJWT));
+      
+    
     }
-
+  
 }
