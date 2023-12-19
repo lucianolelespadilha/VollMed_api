@@ -14,12 +14,16 @@ import med.voll.api.domain.medico.Especialidade;
  * @author llpad
  */
 public record DadosAgendamentoConsulta(
+        
         Long idMedico,
+        
         @NotNull
         Long idPaciente,
+        
         @NotNull
         @Future // A data tem que ser no futuro
         LocalDateTime data,
+        
         Especialidade especialidade) {
 
 }

@@ -24,7 +24,7 @@ import med.voll.api.endereco.Endereco;
  */
 //A classe medico vai representar a tabela do banco de dados entidade JPA
 @Table(name = "medicos")
-@Entity(name = "Medicos")
+@Entity(name = "Medico")
 @Getter//Lomboq gera os Getter automaticos
 @NoArgsConstructor//Lomboq gera os constructor padrao sem argumentos JPA exige
 @AllArgsConstructor//Lomboq cria um constructor que recebe todos os cammpos

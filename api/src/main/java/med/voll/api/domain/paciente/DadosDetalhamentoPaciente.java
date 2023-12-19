@@ -2,7 +2,7 @@ package med.voll.api.paciente;
 
 
 import med.voll.api.endereco.Endereco;
-import med.voll.api.paciente.Paciente;
+import med.voll.api.domain.paciente.Paciente;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
