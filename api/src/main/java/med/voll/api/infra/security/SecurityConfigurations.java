@@ -25,21 +25,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration// anotação para o Spring encontrar a class 
 @EnableWebSecurity//Indicar ao Spring que vamos perssonalizar as configuraçãoes de segurança
 public class SecurityConfigurations {
-    
-   @Autowired
+
+    @Autowired
     private SecurityFilter securityFilter;
 
     //A próxima alteração é configurar o Spring Security para ele não usar o processo de segurança tradicional, o stateful. 
     //Como estamos trabalhando com uma API Rest, o processo de autenticação precisa ser stateless.
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(req -> {req.requestMatchers(HttpMethod.POST,  "/login").permitAll();
-                req.anyRequest().authenticated();
-                }) 
+                .authorizeHttpRequests(req -> {
+                    req.requestMatchers(HttpMethod.POST, "/login").permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
+                    req.anyRequest().authenticated();
+                })
                 //chama primeiro o nosso filtro para depois chamar o do Spring
-                .addFilterBefore(securityFilter,  UsernamePasswordAuthenticationFilter.class).build();
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
 
     @Bean//Serve para esportar uma class para o Spring para que ele possa realiazar a injeção de dependencia em outras class 

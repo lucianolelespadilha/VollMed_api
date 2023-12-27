@@ -4,10 +4,10 @@
  */
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.consulta.AgendaDeConsultas;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
-import med.voll.api.domain.consulta.DadosDetalhamentoConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,22 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author llpad
  */
-
 @RestController
 @RequestMapping("consultas")
+//Adicionar anotação para adicionar o cabeçalho de atorização nas solicitações
+@SecurityRequirement(name = "bearer-key") 
 public class ConsultaController {
-    
+
     @Autowired
     private AgendaDeConsultas agenda;
-    
+
     @PostMapping
-    @Transactional 
-    public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados){
-     agenda.agendar(dados);
-                return ResponseEntity.ok(new DadosDetalhamentoConsulta(null, null, null,null));
-        
+    @Transactional
+    public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados) {
+        var dto = agenda.agendar(dados);
+        return ResponseEntity.ok(dto);
+
     }
-    
-    
-    
+
 }

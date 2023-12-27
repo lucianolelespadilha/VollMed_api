@@ -4,16 +4,12 @@
  */
 package med.voll.api.domain.consulta.validacoes;
 
-import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
-
 /**
  *
  * @author llpad
  */
-public interface InterfaceValidacao {
+public interface ValidadorCancelamentoDeConsulta {
     
-    public void validar(DadosAgendamentoConsulta dados);
-        
-    
+    void validar(DadosCancelamentoConsulta dados);
     
 }

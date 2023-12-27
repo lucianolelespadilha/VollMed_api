@@ -5,6 +5,7 @@
 package med.voll.api.domain.medico;
 
 import java.time.LocalDateTime;
+import org.hibernate.annotations.Parameter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,7 +41,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
            select m.ativo
            from Medico m
            where
-           m.id  =  : id
+           m.id  =  :id
            """)
-    Boolean findAtivoById(Long idMedico);
+    Boolean findAtivoById(Long  id);
 }

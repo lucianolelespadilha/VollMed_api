@@ -32,9 +32,9 @@ public class SecurityFilter extends OncePerRequestFilter { // class do spring qu
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //recuperar o token 
         
-       System.out.println("CHANDO  FILTER");
+        
+       //recuperar o token 
         var tokenJWT = recuperarToken(request);
 
         if (tokenJWT != null) {
@@ -44,7 +44,7 @@ public class SecurityFilter extends OncePerRequestFilter { // class do spring qu
             
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("Logado na requisição");
+           
                   
         }
 

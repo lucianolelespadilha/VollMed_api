@@ -4,6 +4,7 @@
  */
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.List;
 import med.voll.api.domain.medico.DadosAtualizacaoMedico;
@@ -35,6 +36,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @RestController//Mostra para o spring que essa classe e um controller
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key") 
 public class MedicoController {
 
     @Autowired // Mecanismos de injeção de dependencias.  O SpringBoot vai instanciar e passar essa atibuto dentro da class controler
