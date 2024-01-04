@@ -57,7 +57,7 @@ public class Consulta {
     Consulta(Object object, Medico medico, Paciente paciente, LocalDateTime data) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     public void cancelar(MotivoCancelamento motivo) {
         this.motivoCancelamento = motivo;
 
