@@ -59,7 +59,7 @@ public class ConsultaControllerTest {
     }
     
     @Test
-    @DisplayName("Deveria devolver codigo http 200 quando informações estiverem validas.")
+    @DisplayName("Deveria devolver codigo http 200 quando as  informações estiverem validas.")
     @WithMockUser// Fazer moc de usuario para simular usuario logado
     void agendar_cenario2() throws Exception {
         
