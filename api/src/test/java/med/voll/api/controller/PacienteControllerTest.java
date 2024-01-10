@@ -67,7 +67,8 @@ public class PacienteControllerTest {
         var dadosCadastro = new DadosCadastroPaciente(
                 "Luciano",
                 "luciano@voll.med",
-                "34984334229'", "00000000000 ",
+                "34984334229'", 
+                "00000000000 ",
                 dadosEndereco()
         );
         
@@ -83,10 +84,10 @@ public class PacienteControllerTest {
     private DadosEndereco dadosEndereco() {
         return new DadosEndereco(
                 "Travessa Senhor Neném",
-                "Joaquim Querino",
-                "75860000",
-                "Quirinopolis",
-                "GO",
+                "Santa Monica",
+                "00000000",
+                "Uberlândia",
+                "MG",
                 "2",
                 null
         );
